@@ -1,3 +1,5 @@
-class Component extends HTMLElement {}
+class Component extends HTMLElement {
+  content = "Lorem Ipsum";
+}
 
 export default Component;
