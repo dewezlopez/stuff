@@ -1,0 +1,29 @@
+{
+  "name": "stuff",
+  "version": "1.0.0",
+  "description": "What am I trying to create?",
+  "main": "src/main.js",
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "rollup": "^1.7.4",
+    "rollup-plugin-babel": "^4.3.2",
+    "rollup-plugin-node-resolve": "^4.2.3"
+  },
+  "scripts": {
+    "start": "rollup --config",
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dewezlopez/stuff.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dewezlopez/stuff/issues"
+  },
+  "homepage": "https://github.com/dewezlopez/stuff#readme"
+}

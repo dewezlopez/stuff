@@ -1,14 +1,16 @@
-var rollup = require("rollup");
-var babel = require("rollup-plugin-babel");
+import resolve from "rollup-plugin-node-resolve";
+import babel from "rollup-plugin-babel";
 
-rollup
-  .rollup({
-    entry: "src/main.js",
-    plugins: [babel()]
-  })
-  .then(function(bundle) {
-    bundle.write({
-      dest: "dist/bundle.js",
-      format: "umd"
-    });
-  });
+export default {
+  input: "src/main.js",
+  output: {
+    file: "bundle.js",
+    format: "iife"
+  },
+  plugins: [
+    resolve(),
+    babel({
+      exclude: "node_modules/**" // only transpile our source code
+    })
+  ]
+};
