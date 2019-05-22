@@ -1,4 +1,4 @@
-import Component from "src/components/_basics/Component";
+import Component from "./components/_basics/Component/";
 
 class App extends Component {
   content = "Create new component";
