@@ -1,6 +1,7 @@
 import generateId from "./_utils/randomNum";
 import Component from "./components/_basics/Component/";
 import ComponentBuilder from "./components/ComponentBuilder/";
+import ComponentList from "./components/ComponentList/";
 
 class App extends Component {
   constructor() {
@@ -9,12 +10,21 @@ class App extends Component {
     super(innerHtml);
     const shadow = this.shadowRoot;
     const button = shadow.querySelector("button");
+    window.customElements.define("custom-component", ComponentBuilder);
+    window.customElements.define("component-list", ComponentList);
+    const componentList = document.createElement("component-list");
+    shadow.appendChild(componentList);
 
     button.addEventListener("click", event => {
       const componentId = `comp-${generateId()}`;
-      window.customElements.define(componentId, ComponentBuilder);
-      const component = document.createElement(componentId);
-      shadow.appendChild(component);
+      new ComponentBuilder(componentId, instance => {
+        shadow.appendChild(instance);
+        if (typeof this.currentComponent !== "undefined") {
+          componentList.add(instance);
+          this.currentComponent.remove();
+        }
+        this.currentComponent = instance;
+      });
     });
   }
 }

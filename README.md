@@ -1,15 +1,7 @@
-# Todo
-
-- Config for rollup --watch
-- Browsersync or the like
-
-# Whatever this may be. Whatever may this be?
-
-What am I trying to create?
-
-Index.html runs main.js app which allows you to create a component.
-
-Component is made by pressing "new component" button
-
-- New Component button
-  - Create app component which displays button component.
+- Add buttons to list to retrieve component from memory
+- Add default component styling
+- Add a "stage"
+- Form to update border styles
+- And save into list
+- Swap components in list
+- Tests
