@@ -20,7 +20,7 @@ class App extends Component {
       new ComponentBuilder(componentId, instance => {
         shadow.appendChild(instance);
         if (typeof this.currentComponent !== "undefined") {
-          componentList.add(instance);
+          componentList.__add(instance);
           this.currentComponent.remove();
         }
         this.currentComponent = instance;
