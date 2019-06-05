@@ -2,7 +2,12 @@ import Component from "../../_basics/Component";
 
 class Item extends Component {
   constructor(instance) {
-    super(`<li><button>${instance._id}</button></li>`);
+    super({ _innerHtml: `<li><button>${instance._id}</button></li>` });
+    const shadow = this.shadowRoot;
+
+    shadow.querySelector("button").addEventListener("click", event => {
+      instance.__replace(instance);
+    });
   }
 }
 

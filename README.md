@@ -1,7 +1,6 @@
-- Add buttons to list to retrieve component from memory
+- Save list to local storage
+- edit/delete components
 - Add default component styling
 - Add a "stage"
 - Form to update border styles
-- And save into list
-- Swap components in list
 - Tests

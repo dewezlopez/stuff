@@ -1,11 +1,11 @@
 import Component from "../_basics/Component/";
 
 class ComponentBuilder extends Component {
-  constructor(id, cb) {
-    const innerHtml = `<div></div>`;
-    super(innerHtml);
-    this._id = id;
-    cb(this);
+  constructor(instance) {
+    const innerHtml = `<div>${instance._id}</div>`;
+    super({ _innerHtml: innerHtml, _type: "ComponentBuilder" });
+    this._id = instance._id;
+    if (typeof instance.__cb === "function") instance.__cb(this);
   }
 }
 

@@ -1,7 +1,8 @@
 class Component extends HTMLElement {
-  constructor(_innerHtml) {
+  constructor(props) {
     super();
-    this._innerHtml = _innerHtml;
+    this._innerHtml = props._innerHtml;
+    this._type = props._type || "anon";
     this.attachShadow({ mode: "open" });
     this.__attachContent();
   }
@@ -9,9 +10,6 @@ class Component extends HTMLElement {
   __attachContent = () => {
     this.shadowRoot.innerHTML = this._innerHtml;
   };
-
-  _content = "Lorem Ipsum";
-  _innerHTML = `${this._content}`;
 }
 
 export default Component;
