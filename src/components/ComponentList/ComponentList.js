@@ -1,5 +1,4 @@
 import Component from "../_basics/Component";
-import ComponentBuilder from "../ComponentBuilder";
 import Item from "./Item";
 
 /**
@@ -7,13 +6,10 @@ import Item from "./Item";
  * @description manages custom components
  */
 class ComponentList extends Component {
-  constructor(props) {
+  constructor() {
     super({ _innerHtml: "<ul></ul>" });
     this._storage = window.localStorage;
     this._list = [];
-    this.__createNewComponent = props.__createNewComponent;
-    window.customElements.define("component-list--item", Item);
-    this.__restore();
   }
 
   /**
@@ -25,10 +21,7 @@ class ComponentList extends Component {
     if (!this.__find(instance)) {
       this._list.push(instance);
       this.__store();
-      const shadow = this.shadowRoot;
-      const ul = shadow.querySelector("ul");
-      const item = new Item(instance);
-      ul.appendChild(item);
+      this.shadowRoot.querySelector("ul").appendChild(new Item(instance));
     }
   };
 
@@ -62,7 +55,7 @@ class ComponentList extends Component {
   __restore = () => {
     const store = JSON.parse(this._storage.getItem("list"));
     for (const item in store) {
-      this.__createNewComponent(store[item], instance => this.__add(instance));
+      this.__createNew(store[item]);
     }
   };
 }

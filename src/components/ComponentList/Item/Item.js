@@ -6,7 +6,7 @@ class Item extends Component {
     const shadow = this.shadowRoot;
 
     shadow.querySelector("button").addEventListener("click", event => {
-      instance.__replace(instance);
+      instance.__addToStage();
     });
   }
 }
