@@ -1,4 +1,4 @@
-- Save list to local storage
+- add current component to local storage
 - edit/delete components
 - Add default component styling
 - Add a "stage"

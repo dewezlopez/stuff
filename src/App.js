@@ -16,11 +16,16 @@ class App extends Component {
     this.componentList = new ComponentList();
     this.componentList.__createNew = this.__createNew;
     shadow.appendChild(this.componentList);
-    this.componentList.__restore();
     // create stage for saved components
     this.stage = new ComponentBuilder();
     shadow.appendChild(this.stage);
-
+    // restore previous localStorage session
+    this.componentList.__restore();
+    const restoredCurrent = window.localStorage.getItem("current");
+    if (restoredCurrent) {
+      const instance = this.__createNew(restoredCurrent);
+      this.__replaceCurrent(instance);
+    }
     // generates new custom components
     shadow.querySelector("button").addEventListener("click", () => {
       const instance = this.__createNew();
@@ -60,12 +65,14 @@ class App extends Component {
   /**
    * @method __addToStage
    * @description adds a custom component to stage
+   * @description saves current component to localStorage
    * @param {HTMLElement} instance
    */
   __addToStage = instance => {
     this.stage.shadowRoot
       .querySelector(`.${settings.stageClass}`)
       .appendChild(instance);
+    window.localStorage.setItem("current", instance._id);
   };
 }
 
