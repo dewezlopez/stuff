@@ -10,18 +10,39 @@ class ComponentList extends Component {
     super({ _innerHtml: "<ul></ul>" });
     this._storage = window.localStorage;
     this._list = [];
+    this._listNode = this.shadowRoot.querySelector("ul");
   }
 
   /**
    * @method __add
-   * @description adds component instance to array
-   * @description adds item to list
+   * @description adds component instance to _list
+   * @description updates localstorage
+   * @description adds item to html list
    */
   __add = instance => {
     if (!this.__find(instance)) {
       this._list.push(instance);
       this.__store();
-      this.shadowRoot.querySelector("ul").appendChild(new Item(instance));
+      this._listNode.appendChild(new Item(instance));
+    }
+  };
+
+  /**
+   * @method __delete
+   * @description deletes component instance from _list
+   * @description updates localstorage
+   * @description deletes item from html list
+   */
+  __delete = instance => {
+    if (this._list.indexOf(instance)) {
+      this._list = this._list.filter(item => {
+        return item !== instance;
+      });
+      this.__store();
+      const itemToRemove = this._listNode.querySelector(
+        `#item-${instance._id}`
+      );
+      this._listNode.removeChild(itemToRemove);
     }
   };
 

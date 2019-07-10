@@ -1,6 +1,6 @@
-- add current component to local storage
 - edit/delete components
 - Add default component styling
-- Add a "stage"
+- Add a css "stage"
 - Form to update border styles
+- Do I need to use shadow root everywhere? What are pros/cons
 - Tests

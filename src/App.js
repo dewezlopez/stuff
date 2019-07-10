@@ -1,9 +1,9 @@
 import settings from "./settings";
 import generateId from "./_utils/randomNum";
 import Component from "./components/_basics/Component/";
-import ComponentBuilder from "./components/ComponentBuilder/";
 import ComponentList from "./components/ComponentList/";
 import CustomComponent from "./components/CustomComponent/";
+import Stage from "./components/Stage";
 
 class App extends Component {
   constructor() {
@@ -17,19 +17,19 @@ class App extends Component {
     this.componentList.__createNew = this.__createNew;
     shadow.appendChild(this.componentList);
     // create stage for saved components
-    this.stage = new ComponentBuilder();
+    this.stage = new Stage();
     shadow.appendChild(this.stage);
     // restore previous localStorage session
     this.componentList.__restore();
     const restoredCurrent = window.localStorage.getItem("current");
     if (restoredCurrent) {
       const instance = this.__createNew(restoredCurrent);
-      this.__replaceCurrent(instance);
+      instance.__addToStage();
     }
     // generates new custom components
     shadow.querySelector("button").addEventListener("click", () => {
       const instance = this.__createNew();
-      this.__replaceCurrent(instance);
+      instance.__addToStage();
     });
   }
 
@@ -46,6 +46,8 @@ class App extends Component {
     });
     this.componentList.__add(instance);
     instance.__addToStage = () => this.__replaceCurrent(instance);
+    // instance.__edit = () => this.__edit(instance);
+    instance.__delete = () => this.__delete(instance);
     return instance;
   };
 
@@ -73,6 +75,18 @@ class App extends Component {
       .querySelector(`.${settings.stageClass}`)
       .appendChild(instance);
     window.localStorage.setItem("current", instance._id);
+  };
+
+  /**
+   * @method __delete
+   * @description Removes the current instance from ComponentList and Stage
+   */
+  __delete = instance => {
+    if (instance === this._currentComponent) {
+      this._currentComponent.remove();
+    }
+    this.componentList.__delete(instance);
+    window.localStorage.removeItem("current");
   };
 }
 
