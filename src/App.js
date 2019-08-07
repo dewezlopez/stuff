@@ -36,18 +36,20 @@ class App extends Component {
   /**
    * @method __createNew
    * @description Creates a new custom component and adds to ComponentList
+   * @description Assigns App level events to instance
    * @param {string} id - pre-existing id
    * @return {HTMLElement} - the new component instance
    */
   __createNew = id => {
     id = id || `comp-${generateId()}`;
     const instance = new CustomComponent({
-      _id: id
+      _id: id,
+      _name:
     });
-    this.componentList.__add(instance);
     instance.__addToStage = () => this.__replaceCurrent(instance);
-    // instance.__edit = () => this.__edit(instance);
+    instance.__edit = () => this.__edit(instance);
     instance.__delete = () => this.__delete(instance);
+    this.componentList.__add(instance);
     return instance;
   };
 

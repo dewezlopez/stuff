@@ -4,14 +4,15 @@
   "description": "What am I trying to create?",
   "main": "src/main.js",
   "devDependencies": {
-    "@babel/core": "^7.4.4",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "babel-preset-es2015-rollup": "^3.0.0",
-    "rollup": "^1.7.4",
-    "rollup-plugin-babel": "^4.3.2",
-    "rollup-plugin-livereload": "^1.0.0",
-    "rollup-plugin-node-resolve": "^4.2.3",
+    "on-change": "^1.6.2",
+    "rollup": "^1.19.3",
+    "rollup-plugin-babel": "^4.3.3",
+    "rollup-plugin-livereload": "^1.0.1",
+    "rollup-plugin-node-resolve": "^4.2.4",
     "rollup-plugin-serve": "^1.0.1",
     "rollup-plugin-sourcemaps": "^0.4.2"
   },
@@ -28,5 +29,8 @@
   "bugs": {
     "url": "https://github.com/dewezlopez/stuff/issues"
   },
-  "homepage": "https://github.com/dewezlopez/stuff#readme"
+  "homepage": "https://github.com/dewezlopez/stuff#readme",
+  "dependencies": {
+    "rollup-plugin-commonjs": "^10.0.2"
+  }
 }

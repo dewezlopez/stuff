@@ -1,4 +1,7 @@
-- edit/delete components
+- edit components
+- bug: first item can't be deleted
+- bug: new items added to stage then refreshed wont be deleted
+- no component selected
 - Add default component styling
 - Add a css "stage"
 - Form to update border styles
