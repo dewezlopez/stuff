@@ -6,9 +6,9 @@ class CustomComponent extends Component {
       _innerHtml: `<div>${instance._id}</div>`,
       _id: `${instance._id}`,
       _type: "CustomComponent",
-      _name: instance._name,
     });
     this._id = instance._id;
+    this._name = instance._name;
     if (typeof instance.__cb === "function") instance.__cb(this);
   }
 }

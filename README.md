@@ -1,4 +1,3 @@
-- edit components
 - bug: first item can't be deleted
 - bug: new items added to stage then refreshed wont be deleted
 - no component selected

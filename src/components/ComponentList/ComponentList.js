@@ -23,7 +23,7 @@ class ComponentList extends Component {
     if (!this.__find(instance)) {
       this._list.push(instance);
       this.__store();
-      this._listNode.appendChild(new Item(instance));
+      this._listNode.appendChild(new Item(instance, this.__store));
     }
   };
 
@@ -64,7 +64,13 @@ class ComponentList extends Component {
    * @private
    */
   __store = () => {
-    const storeObj = Object.assign({}, this._list.map(item => item._id));
+    const storeObj = Object.assign({}, this._list.map(item => {
+      return {
+        _id: item._id,
+        _name: item._name,
+      }
+    }
+    ));
     this._storage.setItem("list", JSON.stringify(storeObj));
   };
 

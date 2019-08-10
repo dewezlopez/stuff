@@ -22,8 +22,11 @@ class App extends Component {
     // restore previous localStorage session
     this.componentList.__restore();
     const restoredCurrent = window.localStorage.getItem("current");
+    const data = {
+      _id: restoredCurrent,
+    }
     if (restoredCurrent) {
-      const instance = this.__createNew(restoredCurrent);
+      const instance = this.__createNew(data);
       instance.__addToStage();
     }
     // generates new custom components
@@ -37,15 +40,18 @@ class App extends Component {
    * @method __createNew
    * @description Creates a new custom component and adds to ComponentList
    * @description Assigns App level events to instance
-   * @param {string} id - pre-existing id
+   * @param {string} data._id - pre-existing id
+   * @param {string} data._name - pre-existing name
    * @return {HTMLElement} - the new component instance
    */
-  __createNew = id => {
-    id = id || `comp-${generateId()}`;
-    const instance = new CustomComponent({
-      _id: id,
-      _name:
-    });
+  __createNew = data => {
+    data = Object.assign({}, data);
+    const instanceData = {
+      _id: data._id ? data._id : `comp-${generateId()}`,
+      _name: data._name ? data._name : null,
+    }
+    if (this.componentList.__find(instanceData._id)) return;
+    const instance = new CustomComponent(instanceData);
     instance.__addToStage = () => this.__replaceCurrent(instance);
     instance.__edit = () => this.__edit(instance);
     instance.__delete = () => this.__delete(instance);

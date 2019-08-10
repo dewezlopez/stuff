@@ -1,9 +1,10 @@
 import onChange from 'on-change';
 class Item {
-  constructor(instance) {
+  constructor(instance, saveFn) {
     this._instance = instance;
     this._itemNode = document.createElement("li");
     this._itemNode.id = `item-${instance._id}`;
+    this.__save = saveFn;
     this.__createState();
     this.__buildNodes();
     this.__render();
@@ -19,6 +20,7 @@ class Item {
 
     this._workingState = onChange(this._state, () => {
       this._itemNode.innerHTML = "";
+      this._selectButton.innerHTML = this._state._name;
       this.__render();
     })
   }
@@ -55,8 +57,8 @@ class Item {
     });
 
     this._saveButton = this.__buildButton("save", () => {
-      this._instance._name = this._editField.value;
-      console.log(this._instance);
+      this._workingState._name = this._instance._name = this._editField.value;
+      this.__save();
       this._workingState._isEditing = false;
     });
 
